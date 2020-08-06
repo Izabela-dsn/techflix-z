@@ -29,7 +29,9 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    const URL = 'http://localhost:8080/categorias';
+    const URL = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://techflix-z.herokuapp.com/categorias';
     fetch(URL)
       .then(async (respostaDoServidor) => {
         const resposta = await respostaDoServidor.json();
@@ -83,32 +85,6 @@ function CadastroCategoria() {
           name="cor"
           onChange={handleChange}
         />
-
-        {
-            /*
-                    <div>
-                        <label>
-                            Nome da Categoria:
-                            <input type="text" name="titulo" value={valores.titulo} onChange={handleChange}/>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label>
-                            Descrição da Categoria:
-                            <textarea type="text" name="descricao" value={valores.descricao} onChange={handleChange}/>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label>
-                            Cor da Categoria:
-                            <input type="color" name="cor" value={valores.cor} onChange={handleChange}/>
-                        </label>
-                    </div>
-
-                 */
-        }
 
         <Button>
           Cadastrar
